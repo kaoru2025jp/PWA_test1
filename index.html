@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="testWebhook()">テスト送信</button>
+
+<script>
+function testWebhook(){
+
+fetch("https://webhook.site/ここにURL", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    message: "テスト成功",
+    time: new Date().toISOString()
+  })
+})
+.then(res => {
+  if(res.ok){
+    alert("送信成功");
+  }else{
+    alert("サーバー応答あり（失敗）");
+  }
+})
+.catch(err => {
+  alert("完全に失敗（通信不可）");
+  console.log(err);
+});
+
+}
+</script>
+
+</body>
+</html>
